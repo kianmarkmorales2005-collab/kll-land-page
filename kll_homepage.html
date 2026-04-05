@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kolehiyo ng Lungsod ng Lipa</title>
+  <link rel="stylesheet" href="style(2).css" />  
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="#">Students</a>
+    <a href="#">Faculty & Staff</a>
+    <a href="#">Alumni</a>
+    <a href="#">Community</a>
+  </div>
+  <div class="topbar-right">
+    <a href="#">Campus Map</a>
+    <a href="#">Student Portal</a>
+
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-crest">
+      <img src="kll_circle logo.png" alt="logo-crest" class="kll-nav-img">
+    </div>
+    <div class="logo-text">
+      <div class="lg-main">Kolehiyo ng Lungsod ng Lipa</div>
+      <div class="lg-sub">Marawouy · Lipa City, Batangas · Est. 1999</div>
+    </div>
+  </a>
+
+  <div class="nav-links">
+    <a href="#">Academics</a>
+    <a href="#">Admissions</a>
+    <a href="#">Research</a>
+    <a href="#">Student Life</a>
+    <a href="about.html">About KLL</a>
+  </div>
+
+  <div class="nav-actions">
+    <button class="nav-search" aria-label="Search">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
+    <button class="btn-enroll" onclick="location.href='#'">Enroll Now →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="slides" id="slides">
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <div class="slide-bg"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-label">Affordable Excellence</div>
+        <h1 class="slide-title">Education That<br><em>Transforms</em> Lives</h1>
+        <p class="slide-desc">Kolehiyo ng Lungsod ng Lipa provides accessible, quality tertiary education rooted in service, integrity, and the Lasallian spirit of community.</p>
+        <a href="#" class="slide-cta">
+          Enroll Now
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" fill="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="slide-bg"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-label">Academic Programs</div>
+        <h1 class="slide-title">Build Your<br><em>Future</em> Here</h1>
+        <p class="slide-desc">From Business Administration to Computer science, to Education Kolehiyo ng lungsod ng lipa offers programs designed for the careers of tomorrow.</p>
+        <a href="#programs" class="slide-cta">
+          View Programs
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" fill="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="slide-bg"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-label">Heart of Lipa City</div>
+        <h1 class="slide-title">Serving<br><em>Our Community</em></h1>
+        <p class="slide-desc">KLL is deeply rooted in the Lipa City community, producing graduates who give back, lead with purpose, and uplift those around them.</p>
+        <a href="#" class="slide-cta">
+          Our Story
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" fill="none"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <button class="slider-btn slider-prev" id="prev" aria-label="Previous">&#8592;</button>
+  <button class="slider-btn slider-next" id="next" aria-label="Next">&#8594;</button>
+  <div class="slider-dots">
+    <div class="dot active" data-i="0"></div>
+    <div class="dot" data-i="1"></div>
+    <div class="dot" data-i="2"></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item fade-up">
+    <span class="stat-num">20+</span>
+    <span class="stat-label">Years of Service</span>
+  </div>
+  <div class="stat-item fade-up delay-1">
+    <span class="stat-num">10K+</span>
+    <span class="stat-label">Students Enrolled</span>
+  </div>
+  <div class="stat-item fade-up delay-2">
+    <span class="stat-num">6</span>
+    <span class="stat-label">Degree Programs</span>
+  </div>
+  <div class="stat-item fade-up delay-3">
+    <span class="stat-num">95%</span>
+    <span class="stat-label">Graduate Employment Rate</span>
+  </div>
+</div>
+
+<!-- ACADEMICS -->
+
+
+<section class="academics">
+     
+
+  <div class="academics-grid">
+    <div class="academics-intro" id="programs">
+      <div class="section-tag">Academics</div>
+      <h2 class="section-title">Programs for<br><span>Every Learner</span></h2>
+      <p>KLL is a public school in Lipa City that provides affordable, quality education across a range of disciplines. Our dedicated faculty combine academic rigor with practical experience, guiding students to succeed both in the classroom and beyond..</p>
+      <p style="margin-top:14px;">As a community focused institution, KLL is committed to making secondary and tertiary learning accessible to every resident of Lipa City and nearby communities, ensuring that education remains within reach for all who aspire to grow.</p>
+      <a href="#" class="btn-more" style="display:inline-block;margin-top:26px;">Explore all programs →</a>
+    </div>
+    <div class="college-cards">
+      <div class="college-card">
+        <div class="cc-icon">
+           <img src="bsba.jpg" alt="logo-crest" class="kll-nav-img">
+        </div>
+        <h4>College of Business Administration</h4>
+        <p>Accountancy, Management, Marketing</p>
+      </div>
+      <div class="college-card">
+        <div class="cc-icon">
+            <img src="cs.jpg" alt="logo-crest" class="kll-nav-img">
+        </div>
+        <h4>College of Computer Science</h4>
+        <p>Computer Science, ACT</p>
+      </div>
+      <div class="college-card">
+        <div class="cc-icon">
+  <img src="educ.jpg" alt="logo-crest" class="kll-nav-img">        </div>
+        <h4>College of Education</h4>
+        <p>Bachelor of Elementary Education., Bachelor of  Secondary Education., And physical Education.</p>
+      </div>
+      <div class="college-card">
+        <div class="cc-icon">
+  <img src="nursing.jpg" alt="logo-crest" class="kll-nav-img">        </div>
+        <h4>College of Nursing</h4>
+        <p>Nursing (BSN), Clinical Practice, Community Health</p>
+      </div>
+      <div class="college-card">
+        <div class="cc-icon">
+  <img src="cca.jpg" alt="logo-crest" class="kll-nav-img">        </div>
+        <h4>College of Arts & Communication</h4>
+        <p>Liberal Arts, Social Sciences, Natural Sciences</p>
+      </div>
+      <div class="college-card">
+        <div class="cc-icon">
+  <img src="crim.jpg" alt="logo-crest" class="kll-nav-img">        </div>
+  <h4>College of Criminal Justice</h4>
+  <p>Criminology, Law enforcement administration</p>
+        </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- CAMPUS LIFE -->
+<section class="campus-life">
+  <div class="section-tag">Life at KLL</div>
+  <h2 class="section-title">More Than<br>a <span>Classroom</span></h2>
+  <div class="campus-grid">
+    <div class="campus-card">
+      <div class="ci">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </div>
+      <h3>Student Organizations</h3>
+      <p>Join recognized organizations in academics, arts, entertainment, advocacy, and sports.</p>
+    </div>
+    <div class="campus-card">
+      <div class="ci">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm-1 14H9v-2h2v2zm0-4H9V8h2v4zm4 4h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+      </div>
+      <h3>Sports & Athletics</h3>
+      <p>Represent KLL in inter-collegiate competitions and use our modern sports facilities.</p>
+    </div>
+    <div class="campus-card">
+      <div class="ci">
+        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+      </div>
+      <h3>Cultural Events</h3>
+      <p>Department days, talent shows, and cultural nights, Biglakasan to make each department compete who stands at the top, foundation day to celebrate the anniversary of the kolehiyo ng lungsod ng lipa.</p>
+    </div>
+    <div class="campus-card">
+      <div class="ci">
+        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+      </div>
+      <h3>Community Extension</h3>
+      <p>Volunteer programs, livelihood training, and outreach that make a real difference in Lipa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSIONS CTA -->
+<section class="admissions-cta">
+  <div class="section-tag" style="justify-content:center;">Admissions</div>
+  <h2 class="section-title">Begin Your<br><span>KLL Journey</span></h2>
+  <p>Applications for the First Semester of AY 2026–2027 are now open. Be part of a growing community of scholars, leaders, and servants in the heart of Lipa City.</p>
+  <div class="cta-btns">
+    <a href="#" class="cta-primary">Enroll Now</a>
+    <a href="#" class="cta-secondary">Admission Requirements</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top-bar"></div>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-acronym">KLL</div>
+      <div class="fb-name">Kolehiyo ng Lungsod ng Lipa</div>
+      <p>A public tertiary educational institution operated by the City Government of Lipa, committed to providing quality, affordable, and relevant education to the people of Lipa City and beyond.</p>
+      <p class="address">J.P. Laurel Highway, Lipa City, Batangas 4217<br>Tel: (043) 757-0000 · kll@lipa.gov.ph</p>
+    </div>
+    <div class="footer-col">
+      <h4>Academics</h4>
+      <a href="#">Colleges & Programs</a>
+      <a href="#">Graduate School</a>
+      <a href="#">Academic Calendar</a>
+      <a href="#">Scholarships</a>
+      <a href="#">Faculty Directory</a>
+    </div>
+    <div class="footer-col">
+      <h4>Students</h4>
+      <a href="#">Online Enrollment</a>
+      <a href="#">Student Handbook</a>
+      <a href="#">Library</a>
+      <a href="#">Health Services</a>
+      <a href="#">Guidance Office</a>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">KLL History</a>
+      <a href="#">Vision & Mission</a>
+      <a href="#">Administration</a>
+      <a href="#">News & Events</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Kolehiyo ng Lungsod ng Lipa. All rights reserved.</span>
+    <span>City Government of Lipa · Privacy Policy · Accessibility</span>
+  </div>
+</footer>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsEl = document.querySelectorAll('.dot');
+  let current = 0, timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsEl[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsEl[current].classList.add('active');
+    document.getElementById('slides').style.transform = `translateX(-${current * (100/3)}%)`;
+  }
+
+  function autoPlay() { timer = setInterval(() => goTo(current + 1), 5500); }
+  function resetTimer() { clearInterval(timer); autoPlay(); }
+
+  document.getElementById('next').addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+  document.getElementById('prev').addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+  dotsEl.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); resetTimer(); }));
+
+  autoPlay();
+</script>
+</body>
+</html>
