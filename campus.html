@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap");
+
+   body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--dark);
+      background: linear-gradient(145deg, #600010 0%, #900018 35%, #c0001e 65%, #8b0015 100%);
+s      overflow-x: hidden;
+    }
+
+    
+    #campus-map-section {
+    padding: 60px 20px;
+      background: linear-gradient(145deg, #600010 0%, #900018 35%, #c0001e 65%, #8b0015 100%);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.map-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.map-wrapper {
+    flex: 3;
+    position: relative;
+    background: white;
+    padding: 10px;
+    border-radius: 20px; /* Smooth edges matching your other boxes */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.interactive-map {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+}
+
+/* Directory Styling */
+.map-directory {
+    flex: 1;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 5px solid #c0001e; /* Consistent red accent */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.map-directory h3 {
+    margin-bottom: 20px;
+    color: #c0001e;
+}
+
+.map-directory ul {
+    list-style: none;
+    padding: 0;
+}
+
+.map-directory li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+}
+
+/* Responsive for mobile */
+@media (max-width: 900px) {
+    .map-container {
+        flex-direction: column;
+    }
+}
+</style>
+<section id="campus-map-section">
+    <div class="map-header">
+        <div class="section-tag">Find Your Way</div>
+        <h2 class="section-title">Campus <span>Map & Directory</span></h2>
+        <p>Navigate the halls of KLL. Locate your classrooms, laboratories, and administrative offices with ease.</p>
+    </div>
+
+    <div class="map-container">
+        <div class="map-wrapper">
+            <img src="kll_campus_layout.jpg" alt="KLL Campus Map" class="interactive-map">
+            
+            <div class="map-pin" style="top: 20%; left: 30%;" data-label="College of Nursing"></div>
+            <div class="map-pin" style="top: 50%; left: 60%;" data-label="Library"></div>
+        </div>
+
+        <div class="map-directory">
+            <h3>Quick Directory</h3>
+            <ul>
+                <li><strong>Building A:</strong> Administration, Registrar</li>
+                <li><strong>Building B:</strong> Computer Science Labs, CCS Office</li>
+                <li><strong>Building C:</strong> Criminology Mock Court, Gym</li>
+                <li><strong>Green Space:</strong> Student Lounge & Gardens</li>
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+</html>
