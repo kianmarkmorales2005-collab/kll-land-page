@@ -12,14 +12,13 @@
    body {
       font-family: 'Outfit', sans-serif;
       color: var(--dark);
-      background: linear-gradient(145deg, #600010 0%, #900018 35%, #c0001e 65%, #8b0015 100%);
-s      overflow-x: hidden;
+background-image: url(photo_2026-04-04_23-05-19.jpg);   
+ overflow-x: hidden;
     }
 
     
     #campus-map-section {
     padding: 60px 20px;
-      background: linear-gradient(145deg, #600010 0%, #900018 35%, #c0001e 65%, #8b0015 100%);
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -33,6 +32,7 @@ s      overflow-x: hidden;
 .map-wrapper {
     flex: 3;
     position: relative;
+    min-height: 500px;
     background: white;
     padding: 10px;
     border-radius: 20px; /* Smooth edges matching your other boxes */
@@ -81,20 +81,93 @@ s      overflow-x: hidden;
         flex-direction: column;
     }
 }
+.section-tag-btn {
+    display: inline-block;
+    background-color: #ffffff;     
+    color: #c0001e;               
+    padding: 10px 25px 10px 18px;   
+    border-radius: 6px;             
+    
+
+    border-left: 6px solid #c0001e; 
+    
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;        
+    
+   
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
+    
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.section-tag-btn:hover {
+    background-color: #fdf2f2;     
+    transform: translateX(5px);    
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.map-info-card {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    
+    
+    border-left: 8px solid #c0001e; 
+    
+    
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    
+    margin-bottom: 40px;
+    max-width: 800px; 
+}
+
+.map-info-card .section-tag {
+    color: #c0001e;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.map-info-card .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: #1a1a1a; 
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.map-info-card .section-title span {
+    color: #c0001e; 
+    font-weight: 400;
+    font-style: italic;
+}
+
+.map-info-card p {
+    color: #555555;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
 </style>
 <section id="campus-map-section">
     <div class="map-header">
-        <div class="section-tag">Find Your Way</div>
+<a href="kll_homepage.html" class="section-tag-btn">Find Your Way</a>
+<div class="map-info-card">
         <h2 class="section-title">Campus <span>Map & Directory</span></h2>
         <p>Navigate the halls of KLL. Locate your classrooms, laboratories, and administrative offices with ease.</p>
     </div>
 
     <div class="map-container">
         <div class="map-wrapper">
-            <img src="kll_campus_layout.jpg" alt="KLL Campus Map" class="interactive-map">
+            <img src="map.svg" alt="KLL Campus Map" class="interactive-map">
             
-            <div class="map-pin" style="top: 20%; left: 30%;" data-label="College of Nursing"></div>
-            <div class="map-pin" style="top: 50%; left: 60%;" data-label="Library"></div>
+            
         </div>
 
         <div class="map-directory">

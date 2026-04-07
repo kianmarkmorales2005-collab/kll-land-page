@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; } /* White overall background */
+      .bldg { fill: #fff; stroke: #c0001e; stroke-width: 3; } /* Buildings use a slightly thicker Red border */
+      
+      /* Header uses the main bold KLL Red and bold Montserrat font */
+      .text-title { font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; fill: #c0001e; text-anchor: middle; font-weight: 800; }
+      
+      /* Buildings and Departments use a clean, standard Sans-serif font */
+      .text-bldg { font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', Arial, sans-serif; fill: #333; text-anchor: middle; font-weight: 700; font-size: 28px; }
+      .text-diag { font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', Arial, sans-serif; fill: #333; text-anchor: middle; font-weight: 700; font-size: 28px; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="100%" height="100%"/>
+
+  <text x="600" y="160" class="text-title" font-size="52px">KLL CAMPUS</text>
+  <text x="600" y="220" class="text-title" font-size="38px" font-weight="400">Map & Directory</text>
+
+  <rect x="50" y="600" width="220" height="200" class="bldg"/>
+  <text x="160" y="710" class="text-bldg">CBA</text>
+
+  <rect x="50" y="370" width="220" height="200" class="bldg"/>
+  <text x="160" y="480" class="text-bldg">CCS B</text>
+
+  <rect x="300" y="50" width="60" height="850" class="bldg"/>
+
+  <rect x="380" y="600" width="220" height="200" class="bldg"/>
+  <text x="490" y="710" class="text-bldg">CCS A</text>
+
+  <rect x="380" y="370" width="220" height="200" class="bldg"/>
+  <text x="490" y="480" class="text-bldg">CCA</text>
+
+  <polygon points="50,340 300,50 300,340" class="bldg"/>
+  
+  <text transform="translate(195, 195) rotate(-55)" class="text-diag">MULTIPURPOSE</text>
+  <text transform="translate(225, 235) rotate(-55)" class="text-diag">BUILDING</text>
+
+  <rect x="670" y="450" width="80" height="400" class="bldg"/>
+  
+  <text transform="translate(710, 650) rotate(-90)" class="text-diag">ADMIN</text>
+
+  <rect x="300" y="850" width="500" height="60" class="bldg"/>
+
+  </svg>
