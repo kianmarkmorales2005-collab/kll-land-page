@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RESEARCH – Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: url('bscs logo.jpg') center/cover no-repeat fixed;
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 0;
+        }
+
+        .page-wrap {
+            position: relative;
+            z-index: 1;
+            padding: 50px 20px 40px;
+        }
+
+        /* ── HEADER ── */
+        .hero {
+            animation: fadeDown 0.8s ease both;
+            margin-bottom: 40px;
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-25px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            opacity: 0.85;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: white;
+            border-radius: 4px;
+            margin: 18px auto 0;
+            opacity: 0.5;
+        }
+
+        /* ── GRID ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-card {
+            text-decoration: none;
+            color: white;
+            background: rgba(255,255,255,0.12);
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 24px 16px;
+            transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-card:hover {
+            transform: translateY(-8px) scale(1.04);
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+        }
+
+        .page-card .icon { font-size: 2rem; }
+
+        .page-card .label {
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .page-card .sub {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            font-weight: 700;
+        }
+
+        .page-card:nth-child(1)  { border-color: rgba(102,126,234,0.7); }
+        .page-card:nth-child(2)  { border-color: rgba(240,147,251,0.7); }
+        .page-card:nth-child(3)  { border-color: rgba(67,233,123,0.7); }
+        .page-card:nth-child(4)  { border-color: rgba(247,151,30,0.7); }
+        .page-card:nth-child(5)  { border-color: rgba(252,92,125,0.7); }
+        .page-card:nth-child(6)  { border-color: rgba(17,153,142,0.7); }
+        .page-card:nth-child(7)  { border-color: rgba(249,83,198,0.7); }
+        .page-card:nth-child(8)  { border-color: rgba(100,180,220,0.7); }
+        .page-card:nth-child(9)  { border-color: rgba(233,108,26,0.7); }
+        .page-card:nth-child(10) { border-color: rgba(150,120,255,0.7); }
+        .page-card:nth-child(11) { border-color: rgba(86,171,47,0.7); }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            opacity: 0.55;
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <div class="hero">
+        <span class="hero-icon"></span>
+        <h1>RESEARCH</h1>
+        <div class="divider"></div>
+    </div>
+
+    <div class="grid">
+        <a href="page1.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 1</span>
+            <span class="sub">KINDER-PAL</span>
+        </a>
+        <a href="page2.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 2</span>
+            <span class="sub">KIDZONNIA</span>
+        </a>
+        <a href="page3.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 3</span>
+            <span class="sub">Automated Conveyor System for Web-Based Rice Sack Brand Classification and Counting Image Processing.</span>
+        </a>
+        <a href="page4.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 4</span>
+            <span class="sub">BALETE TECH-TOURS</span>
+        </a>
+        <a href="page5.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 5</span>
+            <span class="sub">TODDLER TALK:SMART TUTORIAL CENTER WITH AI INTEGRATION</span>
+        </a>
+        <a href="page6.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 6</span>
+            <span class="sub">IMPLEMENTTATION OF BALIK ARMAS PROGRAM AND ITS IMPACT TO VIOLENT CRIME:AN ASSESSMENT</span>
+        </a>
+        <a href="page7.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 7</span>
+            <span class="sub">EFFECTS OF AWARENESS OF FOURTH YEAR CRIMINOLOGY STUDENTS OF KOLEHIYO NG LUNGSOD NG LIPA ON CYBERCRIME LAW:AN ASSESSMENT</span>
+        </a>
+        <a href="page8.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 8</span>
+            <span class="sub">FACTORS AFFECTING NON-COMPLIANCE TO REPUBLIC ACT NO.8750 OF SELECTED PUBLIC UTILITY JEEPNEY DRIVERS IN LIPA CITY: BASIS FOR AN ACTION PLAN</span>
+        </a>
+        <a href="page9.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 9</span>
+            <span class="sub">DEVELOPMENT OF FOLKTALE-BASED STORIES FOR GRADE SIX</span>
+        </a>
+        <a href="page10.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 10</span>
+            <span class="sub">TEACHERS' LIVED EXPERIENCE IN TEACHING READING AMONG PRIMARY GRADE STRUGGLING READERS IN PINAGTONGULAN ELEMENTARY SCHOOL</span>
+        </a>
+        <a href="page11.html" class="page-card">
+            <span class="icon">📖</span>
+            <span class="label">Page 11</span>
+            <span class="sub">EFFECTS OF INADEQUATE SLEEPING ON THE COGNITIVE PERFORMANCE OF THIRD YEAR BACHELOR OF ELEMENTARY EDUCATION STUDENTS AT KOLEHIYO NG LUNGSOD NG LIPA</span>
+        </a>
+    </div>
+
+    <footer>RESEARCH &copy; 2026 &nbsp;|&nbsp; All Rights Reserved</footer>
+
+</div>
+</body>
+</html>

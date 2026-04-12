@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 11 – EFFECTS OF INADEQUATE SLEEPING ON THE COGNITIVE PERFORMANCE OF THIRD YEAR BACHELOR OF ELEMENTARY EDUCATION STUDENTS AT KOLEHIYO NG LUNGSOD NG LIPA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #56ab2f, #a8e063, #56ab2f);
+            background-size: 300% 300%;
+            animation: bgShift 8s ease infinite;
+            color: white;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        @keyframes bgShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header { padding: 40px 20px 10px; animation: fadeDown 0.7s ease both; }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 {
+            font-size: clamp(1.6rem, 5vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-shadow: 0 3px 12px rgba(0,0,0,0.25);
+        }
+
+        header p { margin-top: 8px; font-size: 1rem; opacity: 0.85; }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            border: 2px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(8px);
+            padding: 5px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+        }
+
+        .card img { width: 100%; display: block; border-radius: 20px; transition: transform 0.4s ease; }
+        .card:hover img { transform: scale(1.06); }
+
+        .card-label {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(6px);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover .card-label { opacity: 1; }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.93);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .overlay.active { display: flex; }
+
+        .zoom-wrapper {
+            position: relative;
+            width: 90vw;
+            height: 85vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+        }
+
+        .zoom-wrapper.grabbing { cursor: grabbing; }
+
+        #overlayImg {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 14px;
+            box-shadow: 0 0 60px rgba(255,255,255,0.08);
+            transform-origin: center center;
+            transition: transform 0.15s ease;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-family: 'Nunito', sans-serif;
+            color: white;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        .zoom-hint.hidden { opacity: 0; }
+
+        .zoom-controls {
+            position: absolute;
+            bottom: 18px;
+            right: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 1002;
+        }
+
+        .zoom-controls button {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.12);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .zoom-controls button:hover { background: rgba(255,255,255,0.3); }
+        #resetZoom { font-size: 12px !important; font-weight: 700; }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 38px;
+            color: white;
+            cursor: pointer;
+            padding: 10px 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.25);
+            transition: background 0.2s;
+            user-select: none;
+            z-index: 1002;
+        }
+
+        .arrow:hover { background: rgba(255,255,255,0.25); }
+        .left  { left: 12px; }
+        .right { right: 12px; }
+
+        .close-btn {
+            position: absolute;
+            top: 16px; right: 20px;
+            font-size: 22px;
+            color: white;
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            width: 42px; height: 42px;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+            z-index: 1003;
+        }
+
+        .close-btn:hover { background: rgba(255,255,255,0.3); }
+
+        .dot-counter {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 1002;
+        }
+
+        .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            transition: background 0.3s;
+        }
+
+        .dot.active { background: white; }
+
+        nav {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 26px;
+            border-radius: 30px;
+            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        footer { padding: 20px; font-size: 0.8rem; opacity: 0.6; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>EFFECTS OF INADEQUATE SLEEPING ON THE COGNITIVE PERFORMANCE OF THIRD YEAR BACHELOR OF ELEMENTARY EDUCATION STUDENTS AT KOLEHIYO NG LUNGSOD NG LIPA</h1>
+    <div class="badge">📖 Page 11</div>
+</header>
+
+<div class="gallery">
+    <div class="card">
+        <img src="28.jpg" class="zoom-img" alt="Image 28">
+        <div class="card-label">🔍 Click to zoom</div>
+    </div>
+    <div class="card">
+        <img src="29.jpg" class="zoom-img" alt="Image 29">
+        <div class="card-label">🔍 Click to zoom</div>
+    </div>
+    <div class="card">
+        <img src="30.jpg" class="zoom-img" alt="Image 30">
+        <div class="card-label">🔍 Click to zoom</div>
+    </div>
+</div>
+
+<div class="overlay" id="overlay">
+    <button class="close-btn" id="closeBtn">✕</button>
+    <div class="dot-counter" id="dotCounter"></div>
+    <span class="arrow left" id="prev">&#10094;</span>
+    <div class="zoom-wrapper" id="zoomWrapper">
+        <img id="overlayImg" alt="Enlarged view">
+        <div class="zoom-hint" id="zoomHint">🖱 Scroll to zoom &nbsp;|&nbsp; Drag to pan &nbsp;|&nbsp; 👆 Pinch on mobile</div>
+    </div>
+    <span class="arrow right" id="next">&#10095;</span>
+    <div class="zoom-controls">
+        <button id="zoomIn">+</button>
+        <button id="zoomOut">−</button>
+        <button id="resetZoom">1:1</button>
+    </div>
+</div>
+
+<nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="page10.html">⬅ Back</a>
+    <a href="index.html">➡ Next</a>
+</nav>
+
+<footer>EFFECTS OF INADEQUATE SLEEPING ON THE COGNITIVE PERFORMANCE OF THIRD YEAR BACHELOR OF ELEMENTARY EDUCATION STUDENTS AT KOLEHIYO NG LUNGSOD NG LIPA &copy; 2023 &nbsp;|&nbsp; Page 11</footer>
+
+<script>
+    const images=document.querySelectorAll(".zoom-img"),overlay=document.getElementById("overlay"),overlayImg=document.getElementById("overlayImg"),nextBtn=document.getElementById("next"),prevBtn=document.getElementById("prev"),closeBtn=document.getElementById("closeBtn"),dotCounter=document.getElementById("dotCounter"),zoomWrapper=document.getElementById("zoomWrapper"),zoomHint=document.getElementById("zoomHint");
+    let currentIndex=0,scale=1,minScale=1,maxScale=5,panX=0,panY=0,isDragging=false,startX,startY;
+    images.forEach((_,i)=>{const d=document.createElement("div");d.classList.add("dot");if(i===0)d.classList.add("active");dotCounter.appendChild(d);});
+    function updateDots(){document.querySelectorAll(".dot").forEach((d,i)=>d.classList.toggle("active",i===currentIndex));}
+    function applyTransform(){overlayImg.style.transform=`translate(${panX}px,${panY}px) scale(${scale})`;}
+    function resetZoom(){scale=1;panX=0;panY=0;overlayImg.style.transition="transform 0.2s ease";applyTransform();setTimeout(()=>overlayImg.style.transition="",200);}
+    function openOverlay(index){currentIndex=index;overlayImg.src=images[currentIndex].src;overlay.classList.add("active");resetZoom();updateDots();zoomHint.classList.remove("hidden");clearTimeout(window._hintTimer);window._hintTimer=setTimeout(()=>zoomHint.classList.add("hidden"),3000);}
+    function closeOverlay(){overlay.classList.remove("active");resetZoom();}
+    images.forEach((img,i)=>img.onclick=()=>openOverlay(i));
+    closeBtn.onclick=closeOverlay;
+    overlay.onclick=e=>{if(e.target===overlay)closeOverlay();};
+    nextBtn.onclick=e=>{e.stopPropagation();currentIndex=(currentIndex+1)%images.length;overlayImg.src=images[currentIndex].src;resetZoom();updateDots();};
+    prevBtn.onclick=e=>{e.stopPropagation();currentIndex=(currentIndex-1+images.length)%images.length;overlayImg.src=images[currentIndex].src;resetZoom();updateDots();};
+    document.getElementById("zoomIn").onclick=e=>{e.stopPropagation();scale=Math.min(scale+0.5,maxScale);applyTransform();};
+    document.getElementById("zoomOut").onclick=e=>{e.stopPropagation();scale=Math.max(scale-0.5,minScale);if(scale===1){panX=0;panY=0;}applyTransform();};
+    document.getElementById("resetZoom").onclick=e=>{e.stopPropagation();resetZoom();};
+    zoomWrapper.addEventListener("wheel",e=>{e.preventDefault();const delta=e.deltaY<0?0.15:-0.15;scale=Math.min(Math.max(scale+delta,minScale),maxScale);if(scale===1){panX=0;panY=0;}overlayImg.style.transition="";applyTransform();},{passive:false});
+    zoomWrapper.addEventListener("mousedown",e=>{if(scale<=1)return;isDragging=true;startX=e.clientX-panX;startY=e.clientY-panY;zoomWrapper.classList.add("grabbing");});
+    window.addEventListener("mousemove",e=>{if(!isDragging)return;panX=e.clientX-startX;panY=e.clientY-startY;overlayImg.style.transition="";applyTransform();});
+    window.addEventListener("mouseup",()=>{isDragging=false;zoomWrapper.classList.remove("grabbing");});
+    let lastDist=null;
+    zoomWrapper.addEventListener("touchstart",e=>{if(e.touches.length===2){lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);}else if(e.touches.length===1&&scale>1){isDragging=true;startX=e.touches[0].clientX-panX;startY=e.touches[0].clientY-panY;}},{passive:true});
+    zoomWrapper.addEventListener("touchmove",e=>{if(e.touches.length===2){e.preventDefault();const dist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);if(lastDist){const ratio=dist/lastDist;scale=Math.min(Math.max(scale*ratio,minScale),maxScale);if(scale===1){panX=0;panY=0;}overlayImg.style.transition="";applyTransform();}lastDist=dist;}else if(e.touches.length===1&&isDragging){panX=e.touches[0].clientX-startX;panY=e.touches[0].clientY-startY;overlayImg.style.transition="";applyTransform();}},{passive:false});
+    zoomWrapper.addEventListener("touchend",()=>{lastDist=null;isDragging=false;});
+    document.addEventListener("keydown",e=>{if(!overlay.classList.contains("active"))return;if(e.key==="ArrowRight")nextBtn.click();if(e.key==="ArrowLeft")prevBtn.click();if(e.key==="Escape")closeOverlay();if(e.key==="+"||e.key==="="){scale=Math.min(scale+0.5,maxScale);applyTransform();}if(e.key==="-"){scale=Math.max(scale-0.5,minScale);if(scale===1){panX=0;panY=0;}applyTransform();}if(e.key==="0")resetZoom();});
+</script>
+</body>
+</html>
