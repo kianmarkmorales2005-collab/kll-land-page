@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Faculty & Staff – Kolehiyo ng Lungsod ng Lipa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:       #c0001e;
+      --red-dark:  #8b0015;
+      --red-deep:  #3d0008;
+      --gold:      #d4a847;
+      --gold-light:#f0c96a;
+      --white:     #ffffff;
+      --off-white: #fdf8f5;
+      --gray:      #6b7280;
+      --dark:      #1a0a0e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--off-white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--red-deep);
+      color: rgba(255,255,255,0.82);
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      padding: 7px 48px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .topbar a { color: inherit; text-decoration: none; margin: 0 10px; transition: color .2s; }
+    .topbar a:hover { color: var(--gold-light); }
+    .topbar-left, .topbar-right { display: flex; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--red);
+      box-shadow: 0 2px 24px rgba(192,0,30,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { width: 48px; height: 48px; border-radius: 6px; object-fit: cover; }
+    .logo-text .lt-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 700; color: var(--red); line-height: 1.2;
+    }
+    .logo-text .lt-sub { font-size: 0.63rem; letter-spacing: 0.12em; color: var(--gray); text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2px; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; color: var(--dark);
+      text-decoration: none; padding: 8px 15px; border-radius: 4px;
+      transition: background .2s, color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: #fff0f2; color: var(--red); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .nav-search {
+      background: none; border: none; cursor: pointer;
+      color: var(--dark); padding: 7px; border-radius: 50%; transition: background .2s;
+    }
+    .nav-search:hover { background: #fff0f2; color: var(--red); }
+
+ 
+    .faculty-hero {
+      position: relative;
+      height: 46vh; min-height: 340px;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(145deg, #1a0004 0%, #5c000f 30%, #c0001e 65%, #8b0015 100%);
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(212,168,71,0.15) 0%, transparent 55%),
+        repeating-linear-gradient(-45deg, transparent, transparent 50px, rgba(255,255,255,0.012) 50px, rgba(255,255,255,0.012) 52px);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,0,5,0.7) 0%, rgba(20,0,5,0.1) 60%, transparent 100%);
+    }
+    .hero-content {
+      position: relative;
+      padding: 0 64px 48px;
+      color: white;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-breadcrumb {
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold-light);
+      margin-bottom: 14px; font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hero-breadcrumb span { color: rgba(255,255,255,0.4); }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 900; line-height: 1.05;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    .hero-content p {
+      font-size: 0.96rem; line-height: 1.75;
+      color: rgba(255,255,255,0.82);
+      max-width: 520px; font-weight: 300;
+      margin-top: 12px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+ 
+    .filter-bar {
+      background: var(--red-dark);
+      padding: 20px 64px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 3px solid var(--gold);
+      flex-wrap: wrap;
+    }
+    .search-box {
+      flex: 1; min-width: 220px;
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 0 14px;
+      gap: 8px;
+    }
+    .search-box svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.6); flex-shrink: 0; }
+    .search-box input {
+      background: none; border: none; outline: none;
+      color: white; font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem; padding: 10px 0; width: 100%;
+    }
+    .search-box input::placeholder { color: rgba(255,255,255,0.45); }
+    .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-tab {
+      padding: 8px 18px; border-radius: 30px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      background: none; color: rgba(255,255,255,0.75);
+      font-size: 0.82rem; font-weight: 500;
+      cursor: pointer; transition: all .2s;
+      font-family: 'Outfit', sans-serif;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--gold); color: var(--red-deep);
+      border-color: var(--gold); font-weight: 700;
+    }
+    .faculty-count {
+      font-size: 0.8rem; color: rgba(255,255,255,0.55);
+      white-space: nowrap;
+    }
+    .faculty-count strong { color: var(--gold-light); }
+
+    /* ── FEATURED DEAN ── */
+    .dean-section {
+      padding: 56px 64px 0;
+    }
+    .section-tag {
+      font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--red);
+      font-weight: 700; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-tag::before { content: ''; display: block; width: 22px; height: 2px; background: var(--red); }
+
+    .dean-card {
+      background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 100%);
+      border-radius: 16px;
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 56px;
+    }
+    .dean-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(212,168,71,0.15) 0%, transparent 60%);
+    }
+    .dean-avatar {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 3px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .dean-avatar .initials {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 900;
+      color: var(--gold-light);
+    }
+    .dean-info { position: relative; }
+    .dean-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--red-deep);
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; padding: 3px 10px;
+      border-radius: 3px; margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .dean-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 900; line-height: 1.1;
+    }
+    .dean-title {
+      font-size: 0.88rem; color: rgba(255,255,255,0.75);
+      margin-top: 6px; font-weight: 300;
+    }
+    .dean-dept {
+      font-size: 0.82rem; color: var(--gold-light);
+      margin-top: 4px; font-weight: 500;
+    }
+
+ 
+    .faculty-section {
+      padding: 0 64px 80px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      font-weight: 900; color: var(--dark); line-height: 1.2;
+      margin-bottom: 32px;
+    }
+    .section-title span { color: var(--red); }
+
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .faculty-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #f0e8ea;
+      border-top: 3px solid var(--red);
+      transition: transform .25s, box-shadow .25s;
+      cursor: pointer;
+      animation: fadeUp 0.6s ease both;
+    }
+    .faculty-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(192,0,30,0.12);
+    }
+    .faculty-card.hidden { display: none; }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--red-dark), var(--red));
+      padding: 24px 22px 18px;
+      display: flex; align-items: center; gap: 14px;
+      position: relative; overflow: hidden;
+    }
+    .card-header::after {
+      content: '';
+      position: absolute; top: -20px; right: -20px;
+      width: 80px; height: 80px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .faculty-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .faculty-avatar .initials {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--gold-light);
+    }
+    .card-header-info { flex: 1; min-width: 0; }
+    .faculty-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: white; line-height: 1.2;
+    }
+    .faculty-firstname {
+      font-size: 0.78rem; color: rgba(255,255,255,0.7);
+      font-weight: 300; margin-top: 2px;
+    }
+
+    .card-body { padding: 16px 22px 20px; }
+    .rank-badge {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; padding: 3px 10px;
+      border-radius: 20px; margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .rank-instructor { background: #fff0f2; color: var(--red); }
+    .rank-associate  { background: #fef3c7; color: #92400e; }
+    .rank-dean       { background: var(--gold); color: var(--red-deep); }
+
+    .credentials {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .credential-item {
+      font-size: 0.77rem; color: var(--gray);
+      display: flex; align-items: flex-start; gap: 6px;
+      line-height: 1.4;
+    }
+    .credential-item::before {
+      content: '';
+      display: block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--red);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .no-credentials {
+      font-size: 0.78rem; color: #ccc;
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.6);
+      padding: 32px 64px;
+      display: flex; justify-content: space-between;
+      align-items: center; font-size: 0.78rem;
+      border-top: 3px solid var(--red-dark);
+    }
+    footer a { color: var(--gold-light); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="#">Faculty & Staff</a>
+    
+   
+  </div>
+  <div class="topbar-right">
+    <a href="campus.html">Campus Map</a>
+    <a href="http://localhost/lms/register.html">Student Portal</a>
+  </div>
+</div>
+
+<!-- NAV -->
+
+
+<!-- HERO -->
+<div class="faculty-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+<div class="hero-breadcrumb">
+    <a href="kll_homepage.html" style="text-decoration: none; color: inherit;">Home</a> 
+    <span>›</span> 
+    Faculty & Staff
+</div>    <h1>Faculty & Staff</h1>
+    <p>Meet the dedicated educators and professionals of the College of Computer Studies at Kolehiyo ng Lungsod ng Lipa.</p>
+  </div>
+</div>
+
+<!-- SEARCH & FILTER BAR -->
+<div class="filter-bar">
+  <div class="search-box">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Search faculty by name..." oninput="filterFaculty()"/>
+  </div>
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="setFilter('all', this)">All Faculty</button>
+    <button class="filter-tab" onclick="setFilter('dean', this)">Dean / Admin</button>
+    <button class="filter-tab" onclick="setFilter('associate', this)">Associate Professor</button>
+    <button class="filter-tab" onclick="setFilter('instructor', this)">Instructor</button>
+  </div>
+  <div class="faculty-count">Showing <strong id="countDisplay">28</strong> faculty members</div>
+</div>
+
+<!-- DEAN FEATURED -->
+<div class="dean-section">
+  <div class="section-tag">College of Computer Studies</div>
+  <div class="dean-card" data-rank="dean" data-name="toh angelo frederick">
+    <div class="dean-avatar">
+      <span class="initials">AF</span>
+    </div>
+    <div class="dean-info">
+      <div class="dean-badge">Dean</div>
+      <div class="dean-name">TOH, Angelo Frederick A.</div>
+      <div class="dean-title">Dean, College of Computer Studies</div>
+      <div class="dean-dept">College of Computer Studies · Kolehiyo ng Lungsod ng Lipa</div>
+    </div>
+  </div>
+</div>
+
+<!-- FACULTY GRID -->
+<div class="faculty-section">
+  <div class="section-tag">Academic Staff</div>
+  <h2 class="section-title">Our <span>Faculty Members</span></h2>
+
+  <div class="faculty-grid" id="facultyGrid">
+
+    <!-- OBVIAR -->
+    <div class="faculty-card" data-rank="associate" data-name="obviar lamelo">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">LA</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">OBVIAR</div>
+          <div class="faculty-firstname">Lamelo A.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-associate">Associate Professor I</span>
+        <div class="credentials">
+          <div class="credential-item">Coordinator, College of Computer Studies</div>
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BADILLO -->
+    <div class="faculty-card" data-rank="instructor" data-name="badillo william">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">WM</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">BADILLO</div>
+          <div class="faculty-firstname">William M.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor III</span>
+        <div class="credentials">
+          <div class="credential-item">Director of Research & Extension</div>
+          <div class="credential-item">Master in Information Technology</div>
+          <div class="credential-item">Master of Arts in Education</div>
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BONCAJES -->
+    <div class="faculty-card" data-rank="instructor" data-name="boncajes rose ann">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">RP</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">BONCAJES</div>
+          <div class="faculty-firstname">Rose Ann P.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- LABAYO -->
+    <div class="faculty-card" data-rank="instructor" data-name="labayo jerome">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">JJ</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">LABAYO</div>
+          <div class="faculty-firstname">Jerome J.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- PRESCO -->
+    <div class="faculty-card" data-rank="instructor" data-name="presco mildreda">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">MB</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">PRESCO</div>
+          <div class="faculty-firstname">Mildreda B.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- FABILA -->
+    <div class="faculty-card" data-rank="instructor" data-name="fabila grace">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">GR</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">FABILA</div>
+          <div class="faculty-firstname">Grace R.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor III</span>
+        <div class="credentials">
+          <div class="credential-item">Master in Management – Major in Educational Management</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DE VILLA -->
+    <div class="faculty-card" data-rank="instructor" data-name="de villa arlyn">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">AB</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">DE VILLA</div>
+          <div class="faculty-firstname">Arlyn B.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- LANTO -->
+    <div class="faculty-card" data-rank="instructor" data-name="lanto bobet">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">BR</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">LANTO</div>
+          <div class="faculty-firstname">Bobet R.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials">
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAGTIBAY -->
+    <div class="faculty-card" data-rank="instructor" data-name="magtibay marlon">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">MJ</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">MAGTIBAY</div>
+          <div class="faculty-firstname">Marlon J.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials">
+          <div class="credential-item">Master in Information Technology</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROCREO -->
+    <div class="faculty-card" data-rank="instructor" data-name="rocreo ronel">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">RM</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">ROCREO</div>
+          <div class="faculty-firstname">Ronel M.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials">
+          <div class="credential-item">Master of Arts in Education</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FETALVO -->
+    <div class="faculty-card" data-rank="associate" data-name="fetalvo robin">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">RV</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">FETALVO</div>
+          <div class="faculty-firstname">Robin V.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-associate">Associate Professor I</span>
+        <div class="credentials">
+          <div class="credential-item">Doctor of Philosophy</div>
+          <div class="credential-item">Master of Arts in Education</div>
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORTUNADO -->
+    <div class="faculty-card" data-rank="instructor" data-name="fortunado john eugene">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">JD</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">FORTUNADO</div>
+          <div class="faculty-firstname">John Eugene D.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials">
+          <div class="credential-item">Electronics Engineer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LARAYA -->
+    <div class="faculty-card" data-rank="instructor" data-name="laraya michee dee">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">MV</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">LARAYA</div>
+          <div class="faculty-firstname">Michee Dee V.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- MALAPAJO -->
+    <div class="faculty-card" data-rank="instructor" data-name="malapajo genmark">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">GO</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">MALAPAJO</div>
+          <div class="faculty-firstname">Genmark O.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials">
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALENCIA -->
+    <div class="faculty-card" data-rank="instructor" data-name="valencia kristel">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">KL</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">VALENCIA</div>
+          <div class="faculty-firstname">Kristel L.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- KATIGBAK -->
+    <div class="faculty-card" data-rank="associate" data-name="katigbak pedro">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">PB</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">KATIGBAK</div>
+          <div class="faculty-firstname">Pedro B.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-associate">Associate Professor I</span>
+        <div class="credentials">
+          <div class="credential-item">Master in Business Administration</div>
+          <div class="credential-item">Master in Arts in Education</div>
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LATINA -->
+    <div class="faculty-card" data-rank="instructor" data-name="latina mark jhonex">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">MA</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">LATINA</div>
+          <div class="faculty-firstname">Mark Jhonex A.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- LAZO -->
+    <div class="faculty-card" data-rank="instructor" data-name="lazo exadelio">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">EJ</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">LAZO</div>
+          <div class="faculty-firstname">Exadelio J.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor III</span>
+        <div class="credentials">
+          <div class="credential-item">Discipline Officer</div>
+          <div class="credential-item">Master in Information Technology</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOSEÑA -->
+    <div class="faculty-card" data-rank="instructor" data-name="hosena paint mark">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">PM</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">HOSEÑA</div>
+          <div class="faculty-firstname">Paint Mark</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- LEONARDO -->
+    <div class="faculty-card" data-rank="instructor" data-name="leonardo alvin">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">AR</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">LEONARDO</div>
+          <div class="faculty-firstname">Alvin R.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials"><div class="no-credentials">No listed credentials</div></div>
+      </div>
+    </div>
+
+    <!-- MARASIGAN -->
+    <div class="faculty-card" data-rank="instructor" data-name="marasigan dhayree ann">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">DN</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">MARASIGAN</div>
+          <div class="faculty-firstname">Dhayree Ann N.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials">
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERZOSA -->
+    <div class="faculty-card" data-rank="instructor" data-name="verzosa rolando">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">RN</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">VERZOSA</div>
+          <div class="faculty-firstname">Rolando N.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials">
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASIA -->
+    <div class="faculty-card" data-rank="instructor" data-name="pasia menchie">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">MM</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">PASIA</div>
+          <div class="faculty-firstname">Menchie M.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor III</span>
+        <div class="credentials">
+          <div class="credential-item">Member of Research Council</div>
+          <div class="credential-item">Testing & Admission Officer</div>
+          <div class="credential-item">Master in Education</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEYNES -->
+    <div class="faculty-card" data-rank="instructor" data-name="leynes jingle">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">JH</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">LEYNES</div>
+          <div class="faculty-firstname">Jingle H.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor III</span>
+        <div class="credentials">
+          <div class="credential-item">Master in Management – Major in Educational Management</div>
+          <div class="credential-item">Licensed Professional Teacher</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEN -->
+    <div class="faculty-card" data-rank="instructor" data-name="panen edward jhon">
+      <div class="card-header">
+        <div class="faculty-avatar"><span class="initials">EL</span></div>
+        <div class="card-header-info">
+          <div class="faculty-name">PANEN</div>
+          <div class="faculty-firstname">Edward Jhon L.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="rank-badge rank-instructor">Instructor I</span>
+        <div class="credentials">
+          <div class="credential-item">Master in Information Technology</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Kolehiyo ng Lungsod ng Lipa · College of Computer Studies</span>
+  <span><a href="kll_homepage.html">Back to Home</a></span>
+</footer>
+
+<script>
+  let currentFilter = 'all';
+
+  function setFilter(rank, btn) {
+    currentFilter = rank;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    filterFaculty();
+  }
+
+  function filterFaculty() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.faculty-card');
+    let visible = 0;
+
+    cards.forEach(card => {
+      const name     = card.dataset.name || '';
+      const rank     = card.dataset.rank || '';
+      const matchRank = currentFilter === 'all' || rank === currentFilter;
+      const matchName = name.includes(query);
+
+      if (matchRank && matchName) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    // Count dean card if visible
+    const deanCard = document.querySelector('.dean-card');
+    if (deanCard) {
+      const deanRank = deanCard.dataset.rank || '';
+      const deanName = deanCard.dataset.name || '';
+      const deanMatchRank = currentFilter === 'all' || deanRank === currentFilter;
+      const deanMatchName = deanName.includes(query);
+      deanCard.closest('.dean-section').style.display =
+        (deanMatchRank && deanMatchName) ? '' : 'none';
+      if (deanMatchRank && deanMatchName) visible++;
+    }
+
+    document.getElementById('countDisplay').textContent = visible;
+  }
+</script>
+
+</body>
+</html>
