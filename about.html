@@ -1,227 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Kolehiyo ng Lungsod ng Lipa</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap");
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | Kolehiyo ng Lungsod ng Lipa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --red:        #c0001e;
-  --red-dark:   #8b0015;
-  --red-deep:   #600010;
-  --red-light:  #e0002a;
-  --gold:       #d4a847;
-  --gold-light: #f0c96a;
-  --white:      #ffffff;
-  --off-white:  #fdf8f5;
-  --gray:       #6b7280;
-  --dark:       #1a0a0e;
-}
+    :root {
+      --red:       #c0001e;
+      --red-dark:  #8b0015;
+      --red-deep:  #3d0008;
+      --gold:      #d4a847;
+      --gold-light:#f0c96a;
+      --white:     #ffffff;
+      --off-white: #fdf8f5;
+      --gray:      #6b7280;
+      --dark:      #1a0a0e;
+    }
 
- {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    html { scroll-behavior: smooth; }
 
-       body {
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    color: #333;
-    position: relative;
-    min-height: 100vh;
-}
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--off-white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--red-deep);
+      color: rgba(255,255,255,0.82);
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      padding: 7px 48px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .topbar a { color: inherit; text-decoration: none; margin: 0 10px; transition: color .2s; }
+    .topbar a:hover { color: var(--gold-light); }
+    .topbar-left, .topbar-right { display: flex; }
 
-    background-image: url('photo_2026-04-04_23-05-19.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: blur(); 
-    z-index: -1; 
-    brightness: 0.8; 
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--red);
+      box-shadow: 0 2px 24px rgba(192,0,30,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { width: 48px; height: 48px; border-radius: 6px; object-fit: cover; }
+    .logo-text .lt-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 700; color: var(--red); line-height: 1.2;
+    }
+    .logo-text .lt-sub { font-size: 0.63rem; letter-spacing: 0.12em; color: var(--gray); text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2px; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; color: var(--dark);
+      text-decoration: none; padding: 8px 15px; border-radius: 4px;
+      transition: background .2s, color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: #fff0f2; color: var(--red); }
+    .nav-search {
+      background: none; border: none; cursor: pointer;
+      color: var(--dark); padding: 7px; border-radius: 50%; transition: background .2s;
+    }
+    .nav-search:hover { background: #fff0f2; color: var(--red); }
 
-    transform: scale(1.1); 
-}
+    /* ── HERO ── */
+    .about-hero {
+      position: relative;
+      height: 88vh; min-height: 520px;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('photo_2026-04-04_23-05-14.jpg') center/cover no-repeat;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(20,0,5,0.88) 0%, rgba(20,0,5,0.5) 55%, rgba(20,0,5,0.2) 100%);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,0,5,0.85) 0%, transparent 50%);
+    }
+    .hero-content {
+      position: relative;
+      padding: 0 72px 64px;
+      color: white;
+      max-width: 680px;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-breadcrumb {
+      font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold-light);
+      margin-bottom: 18px; font-weight: 600;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-breadcrumb::before {
+      content: ''; display: block;
+      width: 28px; height: 2px; background: var(--gold);
+    }
+    .hero-breadcrumb a { color: inherit; text-decoration: none; opacity: 0.6; transition: opacity .2s; }
+    .hero-breadcrumb a:hover { opacity: 1; }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900; line-height: 1.05;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+      margin-bottom: 18px;
+    }
+    .hero-content h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-content p {
+      font-size: 1rem; line-height: 1.8;
+      color: rgba(255,255,255,0.82);
+      font-weight: 300; max-width: 520px;
+      margin-bottom: 32px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--red); color: white;
+      text-decoration: none; padding: 13px 30px;
+      border-radius: 5px; font-weight: 600; font-size: 0.9rem;
+      transition: background .2s, gap .2s;
+      box-shadow: 0 4px 20px rgba(192,0,30,0.4);
+    }
+    .hero-cta:hover { background: #e0002a; gap: 16px; }
 
-     header {
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-    background: linear-gradient(to right, #290000, #800000, #b30000);
-    
-    color: white; 
-    padding: 4rem 2rem;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
-}
+    /* ── QUICK STATS ── */
+    .stats-band {
+      background: var(--red-dark);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 3px solid var(--gold);
+    }
+    .stat-item {
+      padding: 28px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 900;
+      color: var(--gold); line-height: 1; display: block;
+    }
+    .stat-label {
+      font-size: 0.75rem; color: rgba(255,255,255,0.75);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-top: 5px; display: block;
+    }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
+    /* ── SECTION COMMONS ── */
+    .section-tag {
+      font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--red);
+      font-weight: 700; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-tag::before { content: ''; display: block; width: 22px; height: 2px; background: var(--red); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-weight: 900; color: var(--dark); line-height: 1.18;
+    }
+    .section-title span { color: var(--red); }
 
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
+    /* ── HISTORY ── */
+    .history-section {
+      padding: 88px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      background: var(--white);
+    }
+    .history-text p {
+      font-size: 0.96rem; line-height: 1.85;
+      color: var(--gray); font-weight: 300;
+      margin-top: 18px;
+    }
+    .history-image {
+      position: relative;
+      border-radius: 12px; overflow: hidden;
+      height: 360px;
+      box-shadow: 0 24px 48px rgba(192,0,30,0.15);
+    }
+    .history-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .history-image::before {
+      content: '';
+      position: absolute; inset: 0;
+      border: 3px solid var(--gold);
+      border-radius: 12px;
+      z-index: 1;
+      opacity: 0.4;
+    }
+    .year-badge {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      background: var(--red);
+      color: white; z-index: 2;
+      padding: 10px 18px; border-radius: 6px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 900;
+      box-shadow: 0 4px 16px rgba(192,0,30,0.4);
+    }
+    .year-badge span { display: block; font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 400; opacity: 0.8; }
 
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
+    /* ── VMG SECTION ── */
+    .vmg-section {
+      padding: 88px 72px;
+      background: var(--off-white);
+    }
+    .vmg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .vmg-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border-top: 4px solid var(--red);
+      padding: 32px 28px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .vmg-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(192,0,30,0.1); }
+    .vmg-icon {
+      width: 52px; height: 52px;
+      background: var(--red);
+      border-radius: 10px; margin-bottom: 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .vmg-icon svg { width: 28px; height: 28px; fill: white; }
+    .vmg-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--dark); margin-bottom: 14px;
+      text-transform: capitalize;
+    }
+    .vmg-card p, .vmg-card li {
+      font-size: 0.88rem; color: var(--gray);
+      line-height: 1.8; font-weight: 300;
+    }
+    .vmg-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .vmg-card li {
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .vmg-card li::before {
+      content: '';
+      display: block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--red);
+      margin-top: 7px; flex-shrink: 0;
+    }
 
-        section {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    /* ── PROGRAMS ── */
+    .programs-section {
+      padding: 88px 72px;
+      background: var(--red-dark);
+      position: relative; overflow: hidden;
+    }
+    .programs-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 90% 20%, rgba(212,168,71,0.1) 0%, transparent 55%);
+    }
+    .programs-section .section-tag { color: var(--gold-light); }
+    .programs-section .section-tag::before { background: var(--gold); }
+    .programs-section .section-title { color: white; }
+    .programs-section .section-title span { color: var(--gold-light); }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 48px;
+      position: relative;
+    }
+    .program-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; padding: 26px 22px;
+      transition: background .25s, transform .25s;
+      cursor: pointer;
+    }
+    .program-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-4px); }
+    .program-icon {
+      width: 44px; height: 44px;
+      background: var(--gold); border-radius: 8px;
+      margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .program-icon svg { width: 24px; height: 24px; fill: var(--red-deep); }
+    .program-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: white; margin-bottom: 8px; line-height: 1.3;
+    }
+    .program-card p { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.65; font-weight: 300; }
 
-        h2 {
-            color: #c0001e;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
-        }
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 88px 72px;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .contact-info { }
+    .contact-info p { font-size: 0.96rem; color: var(--gray); line-height: 1.8; font-weight: 300; margin-top: 18px; }
+    .contact-items { margin-top: 32px; display: flex; flex-direction: column; gap: 18px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px 20px;
+      background: var(--off-white);
+      border-radius: 10px;
+      border-left: 3px solid var(--red);
+    }
+    .contact-item-icon {
+      width: 40px; height: 40px;
+      background: var(--red); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-item-icon svg { width: 20px; height: 20px; fill: white; }
+    .contact-item-text h4 { font-size: 0.82rem; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
+    .contact-item-text p { font-size: 0.85rem; color: var(--gray); font-weight: 300; }
+    .map-box {
+      background: #f0e8ea;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 300px;
+      border: 2px solid #f0e8ea;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+      color: var(--gray);
+    }
+    .map-box svg { width: 40px; height: 40px; stroke: var(--red); }
+    .map-box p { font-size: 0.85rem; }
+    .map-box a {
+      color: var(--red); font-weight: 600;
+      font-size: 0.85rem; text-decoration: none;
+      border-bottom: 1px solid var(--red);
+    }
 
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .program-card {
-            background: #f9f9f9;
-            padding: 1rem;
-            border-left: 4px solid #c0001e;
-            border-radius: 4px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 1rem;
-            text-decoration: none;
-            color: #c0001e;
-            font-weight: bold;
-            background-color: white;
-          padding: 0.6rem 1.2rem;
-         margin-bottom: 1.5rem;
-         border-radius: 12px;
-         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-           
-            
-        }
-        
-        .goals-list {
-    margin-top: 1rem;      /* Space above the entire list */
-    margin-left: 1.5rem;   /* Indentation for the bullets */
-    list-style-type: disc; /* Ensures standard bullet points */
-}
-
-.goals-list li {
-    margin-bottom: 1.2rem; /* Vertical space between each bullet point */
-    padding-left: 0.5rem;  /* Space between the bullet and the text */
-    line-height: 1.6;      /* Improves readability of multi-line text */
-}
-    </style>
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      padding: 40px 72px;
+      display: flex; justify-content: space-between;
+      align-items: center; font-size: 0.78rem;
+      border-top: 3px solid var(--red-dark);
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer a { color: var(--gold-light); text-decoration: none; }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Kolehiyo ng Lungsod ng Lipa</h1>
-        <p>Providing Quality Education since 1999</p>
-    </header>
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="#">Faculty & Staff</a>
 
-    <div class="container">
-        <a href="kll_homepage.html" class="back-btn">&larr; Back to Home</a>
+    
+  </div>
+  <div class="topbar-right">
+    <a href="campus.html">Campus Map</a>
+    <a href="http://localhost/lms/register.html">Student Portal</a>
+  </div>
+</div>
 
-        <section id="history">
-            <h2>History & Mission</h2>
-            <p>Established in 1999, Kolehiyo ng Lungsod ng Lipa (KLL) serves as a cornerstone of higher education in Batangas. It was founded to provide accessible, high-quality tertiary education to the deserving youth of Lipa City, fostering academic excellence and social responsibility.</p>
-        </section>
+<!-- NAV -->
+<nav>
+  <a href="kll_homepage.html" class="nav-logo">
+    <img src="kll_circle logo.png" alt="KLL Logo"/>
+    <div class="logo-text">
+      <div class="lt-main">Kolehiyo ng Lungsod ng Lipa</div>
+      <div class="lt-sub">Marawouy · Lipa City, Batangas </div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="research page/index.html">Research</a>
+    <a href="#">Student Life</a>
+    <a href="about.html" class="active">About KLL</a>
+  </div>
+  <button class="nav-search" aria-label="Search">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+</nav>
 
-         <section id="vision">
-            <h2>Vision </h2>
-            <p>A center of human development commited to the pursuit of wisdom, truth, justice, pride, diginit, local and global competitivenes via quality and free education for all qualified client  </p>
-        </section>
+<!-- HERO -->
+<div class="about-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-breadcrumb">
+      <a href="kll_homepage.html">Home</a> › About KLL
+    </div>
+    <h1>About <em>KLL</em></h1>
+    <p>Established in 1999, Kolehiyo ng Lungsod ng Lipa stands as a cornerstone of accessible, quality tertiary education in the heart of Lipa City, Batangas.</p>
+    <a href="#history" class="hero-cta">
+      Discover Our Story →
+    </a>
+  </div>
+</div>
 
-         <section id="mission">
-            <h2>Mission</h2>
-            <p> Established and maintain an academic environment promoting the pursuit of excellence and the total development of its student as human beings, fear of god, love of country and fellowment </p>
-        </section>
-           <section id="mission">
-            <h2>Goals</h2>
-<ul class="goals-list">
-        <li>Foster the spiritual, intellectual, social, moral, and creative life of its client via free and quality tertiary education.</li>
-        <li>Provide the client with rich and substantial, relevant and wide range of academic disciplines, expose them to varied curricular and co-curricular experiences with nurture, and enhance their personal dedication to commitments to social, moral, cultural, and economic transformations.</li>
-        <li>Work with the government and the community in the pursuit of achieving national developmental goals</li>
-        <li>Develop deserving and qualified clients with different skill of life existence and prepare them for local and global competitiveness</li>
-    </ul>
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item">
+    <span class="stat-num">1999</span>
+    <span class="stat-label">Year Founded</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">25+</span>
+    <span class="stat-label">Years of Service</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">8K+</span>
+    <span class="stat-label">Students Enrolled</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">30+</span>
+    <span class="stat-label">Academic Programs</span>
+  </div>
+</div>
 
-        </section>
-   
+<!-- HISTORY -->
+<section class="history-section" id="history">
+  <div class="history-text">
+    <div class="section-tag">Our Story</div>
+    <h2 class="section-title">History &<br><span>Mission</span></h2>
+    <p>Established in 1999, Kolehiyo ng Lungsod ng Lipa (KLL) serves as a cornerstone of higher education in Batangas. It was founded to provide accessible, high-quality tertiary education to the deserving youth of Lipa City, fostering academic excellence and social responsibility.</p>
+    <p>Over the past two and a half decades, KLL has grown into a thriving academic institution offering a wide range of undergraduate and graduate programs, producing graduates who serve with integrity, lead with purpose, and uplift their communities.</p>
+  </div>
+  <div class="history-image">
+    <img src="photo_2026-04-04_23-05-14.jpg" alt="KLL Campus"/>
+    <div class="year-badge">
+      Est. 1999
+      <span>Lipa City, Batangas</span>
+    </div>
+  </div>
+</section>
 
+<!-- VISION MISSION GOALS -->
+<section class="vmg-section" id="vmg">
+  <div class="section-tag">Our Foundation</div>
+  <h2 class="section-title">Vision, Mission &<br><span>Goals</span></h2>
 
-        <section id="programs">
-            <h2>Academic Programs</h2>
-            <p>KLL offers a diverse range of undergraduate programs designed to meet the demands of the modern global workforce:</p>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <h3>Business Administration</h3>
-                    <p>Focusing on management, marketing, and entrepreneurship.</p>
-                </div>
-                <div class="program-card">
-                    <h3>Computer Science</h3>
-                    <p>Building skills in software development, AI, and systems analysis.</p>
-                </div>
-                <div class="program-card">
-                    <h3>Education</h3>
-                    <p>Training the next generation of primary and secondary teachers.</p>
-                </div>
-                <div class="program-card">
-                    <h3>Nursing</h3>
-                    <p>Providing rigorous clinical training and healthcare theory.</p>
-                </div>
-                <div class="program-card">
-                    <h3>Arts & Communication</h3>
-                    <p>Exploring media, journalism, and creative expression.</p>
-                </div>
-                 <div class="program-card">
-                    <h3>Criminal Justice</h3>
-                    <p>Exploring law enforcement and criminal justice</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Campus Location</h2>
-            <p><strong>Address:</strong> Marawoy, Lipa City, Batangas, Philippines</p>
-           
-        </section>
+  <div class="vmg-grid">
+    <!-- Vision -->
+    <div class="vmg-card">
+      <div class="vmg-icon">
+        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h3>Vision</h3>
+      <p>A center of human development committed to the pursuit of wisdom, truth, justice, pride, dignity, local and global competitiveness via quality and free education for all qualified clients.</p>
     </div>
 
-    <footer>
-        2026 Kolehiyo ng Lungsod ng Lipa. All rights reserved.
-    </footer>
+    <!-- Mission -->
+    <div class="vmg-card">
+      <div class="vmg-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Mission</h3>
+      <p>Established and maintain an academic environment promoting the pursuit of excellence and the total development of its students as human beings, fear of God, love of country and fellowmen.</p>
+    </div>
+
+    <!-- Goals -->
+    <div class="vmg-card">
+      <div class="vmg-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3>Goals</h3>
+      <ul>
+        <li>Foster the spiritual, intellectual, social, moral, and creative life of its clients via free and quality tertiary education.</li>
+        <li>Provide rich, relevant, and wide-ranging academic disciplines with curricular and co-curricular experiences.</li>
+        <li>Work with government and community in achieving national developmental goals.</li>
+        <li>Develop qualified clients with life skills and prepare them for local and global competitiveness.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs-section" id="programs">
+  <div class="section-tag">Academics</div>
+  <h2 class="section-title">Academic <span>Programs</span></h2>
+
+  <div class="programs-grid">
+    <div class="program-card">
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.33C18 2.54 15.91.5 13.5.5c-1.42 0-2.5.5-3.5 1.5L9 3 7.5 2C6.5 1 5.42.5 4 .5 1.59.5 0 2.54 0 4.67c0 .45.11.89.18 1.33H0v14c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>
+      </div>
+      <h3>Business Administration</h3>
+      <p>Focusing on management, marketing, and entrepreneurship for the modern business world.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+      </div>
+      <h3>Computer Science</h3>
+      <p>Building skills in software development, artificial intelligence, and systems analysis.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+      </div>
+      <h3>Education</h3>
+      <p>Training the next generation of dedicated primary and secondary school teachers.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+      </div>
+      <h3>Nursing</h3>
+      <p>Providing rigorous clinical training and comprehensive healthcare theory.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+      </div>
+      <h3>Arts & Communication</h3>
+      <p>Exploring media, journalism, and creative expression in the modern world.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm-1 14H9v-2h2v2zm0-4H9V8h2v4zm4 4h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+      </div>
+      <h3>Criminology</h3>
+      <p>Preparing future law enforcement professionals with knowledge in criminal justice and public safety.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-info">
+    <div class="section-tag">Get in Touch</div>
+    <h2 class="section-title">Campus <span>Location</span></h2>
+    <p>We welcome visitors, prospective students, and partners to our campus in the heart of Lipa City. Our offices are open Monday through Friday.</p>
+
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div class="contact-item-text">
+          <h4>Address</h4>
+          <p>Marawoy, Lipa City, Batangas, Philippines</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div class="contact-item-text">
+          <h4>Email</h4>
+          <p>inquiry@kll.edu.ph</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <div class="contact-item-text">
+          <h4>Office Hours</h4>
+          <p>Monday – Friday · 8:00 AM – 5:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="map-box">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+      </svg>
+      <p>Marawoy, Lipa City, Batangas</p>
+      <a href="https://maps.google.com/?q=Kolehiyo+ng+Lungsod+ng+Lipa+Marawoy+Lipa+City+Batangas" target="_blank">View on Google Maps →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Kolehiyo ng Lungsod ng Lipa · All rights reserved.</span>
+  <span><a href="kll_homepage.html">Back to Home</a> · <a href="faculty.html">Faculty & Staff</a></span>
+</footer>
 
 </body>
 </html>
